@@ -1,7 +1,7 @@
-final_project_ML
+Machine Learning Project
 ==============================
 
-: A complete Machine Learning Project. I will compare the performance of a Random Forest and a Neural Networks classifiers.
+A complete Machine Learning Project. I will compare the performance of a Random Forest and a Neural Networks classifiers.
 
 Project Organization
 ------------
