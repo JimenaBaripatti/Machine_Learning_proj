@@ -9,6 +9,10 @@ import click
 import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
+import numpy as np
+import os
+
+
 
 
 @click.command()
@@ -20,6 +24,26 @@ def main(input_filepath, output_filepath):
     """
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
+
+def make_dataset(input_filepath, output_filepath):
+    with open(input_filepath, 'r') as f:
+        first_line = f.readline().strip()
+    f.close()
+
+    num_sig = int(first_line.split(" ")[0])
+    num_bg = int(first_line.split(" ")[1])
+
+    y = np.append(np.ones(num_sig), np.zeros(num_bg))
+    X = np.loadtxt(input_filepath, skiprows=1)
+    data = np.append(X, np.reshape(y, [y.shape[0], 1]), axis=1)
+
+    np.savetxt(output_filepath, data, delimiter= ',')
+
+    return data
+
+
+
+
 
 
 if __name__ == '__main__':
