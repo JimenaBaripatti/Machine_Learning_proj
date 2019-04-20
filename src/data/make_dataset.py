@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+######################## Machine Learning - Code ###############################
+# Author: Jimena Baripatti
+# Email: jimenabaripatti@gmail.com
+###########################################################################
+
+
 import click
 import logging
 from pathlib import Path
@@ -28,3 +34,5 @@ if __name__ == '__main__':
     load_dotenv(find_dotenv())
 
     main()
+
+
