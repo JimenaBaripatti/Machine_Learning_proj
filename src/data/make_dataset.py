@@ -11,6 +11,8 @@ from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 import numpy as np
 import os
+from sklearn.model_selection import train_test_split
+
 
 
 
@@ -40,6 +42,19 @@ def make_dataset(input_filepath, output_filepath):
     np.savetxt(output_filepath, data, delimiter= ',')
 
     return data
+def split_data(dataset):
+    #split dataset
+    train_set, test_set = train_test_split(dataset, test_size=0.2, random_state=42)
+    # split attributes and label
+    X_train = train_set[:,0:-1]
+    y_train = train_set[:,-1]
+
+    X_test = test_set[:,0:-1]
+    y_test = test_set[:,-1]
+
+    return X_train, y_train, X_test, y_test
+
+
 
 
 
