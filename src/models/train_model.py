@@ -3,8 +3,9 @@ from sklearn.model_selection import GridSearchCV
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier
+from keras.optimizers import SGD
 
-def create_model():
+def create_model_batch_epoch():
 
     #create classifier model 
     model = Sequential()
@@ -14,6 +15,16 @@ def create_model():
     #compile model
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
+
+def create_model_lrate(learn_rate=0.01):
+	# create model
+	model = Sequential()
+	model.add(Dense(25, input_dim=50, activation='relu'))
+	model.add(Dense(1, activation='sigmoid'))
+	# Compile model
+	optimizer = SGD(lr=learn_rate)
+	model.compile(loss='binary_crossentropy', optimizer=optimizer, metrics=['accuracy'])
+	return model
 
 def get_best_result(param_grid, model, X_train, y_train):
     grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1)
