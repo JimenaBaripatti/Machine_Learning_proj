@@ -12,6 +12,8 @@ from dotenv import find_dotenv, load_dotenv
 import numpy as np
 import os
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
 
 
 
@@ -53,6 +55,15 @@ def split_data(dataset):
     y_test = test_set[:,-1]
 
     return X_train, y_train, X_test, y_test
+
+
+def scale_data(X_train, X_test):
+    scaler = StandardScaler()
+    scaler.fit(X_train)
+    X_train_s = scaler.transform(X_train)
+    X_test_s = scaler.transform(X_test)
+    return X_train_s, X_test_s
+    
 
 
 
